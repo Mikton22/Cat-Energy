@@ -14,7 +14,7 @@
   font-size: 14px;
   line-height: 18px;
   font-weight: $regular;
-  color: $dark-grey;
+  color: $dark-gray;
 
   list-style: none;
   margin: 0;
@@ -41,5 +41,79 @@
   }
 
   .process__item {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 20px;
+
+    @media (max-width: $only-mobile-width) {
+      & {
+        margin-top: 20px;
+      }
+    }
+
+    @media (min-width: $tablet-width) {
+      position: relative;
+
+      grid-template-columns: auto;
+      grid-template-rows: 80px 1fr;
+      gap: 31px;
+
+      min-height: 240px;
+      padding-top: 40px;
+
+      counter-increment: process;
+    }
+
+    @media (min-width: $tablet-width) {
+      min-height: 240px;
+      padding-top: 40px;
+    }
+
+    &::before {
+      content: "";
+
+      width: 60px;
+      height: 60px;
+      background-color: $basic-green;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+
+      @media (min-width: $tablet-width) {
+        width: 80px;
+        height: 80px;
+      }
+    }
+
+    &::after {
+      @media (min-width: $tablet-width) {
+        content: counter(process);
+        position: absolute;
+
+        font-family: $font-heading;
+        font-size: 280px;
+        line-height: 1;
+        color: $basic-gray;
+
+        top: 0;
+        right: 0;
+        z-index: -1;
+      }
+    }
+  }
+
+  .process__item--leaf::before{
+    background-image: url("../../img/icon_leaf.svg");
+  }
+
+  .process__item--powder::before {
+    background-image: url("../../img/icon_powder.svg");
+  }
+
+  .process__item--meal::before {
+    background-image: url("../../img/icon_meal.svg");
+  }
+
+  .process__item--weight::before {
+    background-image: url("../../img/icon_weight.svg");
   }
 }
